@@ -16,7 +16,7 @@ class Festival {
   ) => {
     try {
       const { data } = await axios({
-        url: `http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival`,
+        url: `/searchFestival`,
         method: "get",
         params: {
           serviceKey: Festival.API_KEY,
