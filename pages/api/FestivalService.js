@@ -1,9 +1,11 @@
 import axios from "axios";
 
-class Festival {
+class FestivalService {
   static FESTIVAL_URL = process.env.REACT_APP_FESTIVAL_API_URL;
 
   static HOLIDAY_URL = process.env.REACT_APP_HOLIDAY_API_URL;
+
+  static SEARCH_FESTIVAL = "/openapi/service/rest/KorService/searchFestival";
 
   static API_KEY =
     "P/todAwLp6jB3Dx9vFBWu/BbzqviE4YaMhDnJ1Jyl77akvPHajFVr72AqAgiUCRoCAq27WO29pYAIR3meH3MHw==";
@@ -16,10 +18,10 @@ class Festival {
   ) => {
     try {
       const { data } = await axios({
-        url: `/searchFestival`,
+        url: FestivalService.SEARCH_FESTIVAL,
         method: "get",
         params: {
-          serviceKey: Festival.API_KEY,
+          serviceKey: FestivalService.API_KEY,
           pageNo,
           numOfRows: "10",
           _type: "json",
@@ -40,4 +42,4 @@ class Festival {
   };
 }
 
-export default Festival;
+export default FestivalService;
