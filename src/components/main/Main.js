@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import Festival from "../../pages/api/Festival";
-import FestivalList from "./festival/FestivalList";
+import Festival from "../../../pages/api/FestivalService";
+import FestivalList from "../festival/FestivalList";
 
 const Main = (props) => {
   const [festival, setFestival] = useState(null);
