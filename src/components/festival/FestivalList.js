@@ -1,23 +1,27 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Grid } from "@mui/material";
+import FestivalItem from "./FestivalItem";
 
-const FestivalList = ({ festival }) => {
-  if (!festival) return null;
+const FestivalList = ({ festivals }) => {
+  if (!festivals) return null;
   return (
-    <div>
-      {festival.items.item.map((place) => (
-        <div key={place.contentid}>{place.title}</div>
+    <Grid container spacing={3}>
+      {festivals.items.item.map((festival) => (
+        <Grid item key={festival.contentid} md={3}>
+          <FestivalItem festival={festival} />
+        </Grid>
       ))}
-    </div>
+    </Grid>
   );
 };
 
 FestivalList.propTypes = {
-  festival: PropTypes.instanceOf(Object),
+  festivals: PropTypes.instanceOf(Object),
 };
 
 FestivalList.defaultProps = {
-  festival: null,
+  festivals: null,
 };
 
 export default FestivalList;

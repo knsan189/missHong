@@ -1,24 +1,25 @@
 import React, { useEffect, useState } from "react";
+import { Container } from "@mui/material";
 import PropTypes from "prop-types";
 import Festival from "../../../pages/api/FestivalService";
 import FestivalList from "../festival/FestivalList";
 
 const Main = (props) => {
-  const [festival, setFestival] = useState(null);
+  const [festivals, setFestivals] = useState(null);
 
-  const getFestival = async () => {
+  const getFestivals = async () => {
     const result = await Festival.getThisMonthFestival(20211212, 1, "B");
-    setFestival(result);
+    setFestivals(result);
   };
   useEffect(() => {
-    getFestival();
+    getFestivals();
   }, []);
 
   return (
-    <>
+    <Container>
       <div />
-      <FestivalList festival={festival} />
-    </>
+      <FestivalList festivals={festivals} />
+    </Container>
   );
 };
 

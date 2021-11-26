@@ -4,9 +4,9 @@ import { AppBar, Container, Toolbar } from "@mui/material";
 
 const Header = (props) => {
   return (
-    <AppBar>
+    <AppBar position="static">
       <Toolbar>
-        <Container>a</Container>
+        <Container>Miss Hong Fesitval Tour</Container>
       </Toolbar>
     </AppBar>
   );
