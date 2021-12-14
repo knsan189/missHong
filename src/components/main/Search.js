@@ -1,14 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import { useRouter } from "next/router";
 import { Box } from "@mui/material";
 import SearchBar from "./SearchBar";
-import FestivalService from "../../../pages/api/FestivalService";
+import { searchFestivalRequest } from "../../redux/reducers/festival";
 
 const Search = (props) => {
+  const dispatch = useDispatch();
+  const router = useRouter();
   const onSearch = async (text) => {
-    const result = await FestivalService.searchKeyword(text, 0);
-    console.log(result);
+    dispatch(searchFestivalRequest(text, 0));
+    router.push("/map");
   };
+
   return (
     <Box sx={{ height: "100vh" }}>
       <SearchBar onSearch={onSearch} />
