@@ -3,6 +3,7 @@ import { Container } from "@mui/material";
 import PropTypes from "prop-types";
 import Festival from "../../../pages/api/FestivalService";
 import FestivalList from "../festival/FestivalList";
+import Search from "./Search";
 
 const Main = (props) => {
   const [festivals, setFestivals] = useState(null);
@@ -17,7 +18,7 @@ const Main = (props) => {
 
   return (
     <Container>
-      <div />
+      <Search />
       <FestivalList festivals={festivals} />
     </Container>
   );

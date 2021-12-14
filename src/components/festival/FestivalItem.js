@@ -22,7 +22,9 @@ const FestivalItem = ({ festival }) => {
           <Typography variant="subtitle1" noWrap>
             {title}
           </Typography>
-          <Typography variant="caption">{addr1}</Typography>
+          <Typography variant="caption" noWrap>
+            {addr1}
+          </Typography>
         </CardContent>
       </CardActionArea>
     </Card>

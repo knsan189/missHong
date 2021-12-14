@@ -5,7 +5,7 @@ class FestivalService {
 
   static HOLIDAY_URL = process.env.REACT_APP_HOLIDAY_API_URL;
 
-  static SEARCH_FESTIVAL = "/openapi/service/rest/KorService/searchFestival";
+  static SEARCH_FESTIVAL = "/openapi/service/rest/KorService";
 
   static API_KEY =
     "P/todAwLp6jB3Dx9vFBWu/BbzqviE4YaMhDnJ1Jyl77akvPHajFVr72AqAgiUCRoCAq27WO29pYAIR3meH3MHw==";
@@ -18,7 +18,7 @@ class FestivalService {
   ) => {
     try {
       const { data } = await axios({
-        url: FestivalService.SEARCH_FESTIVAL,
+        url: `${FestivalService.SEARCH_FESTIVAL}/searchFestival`,
         method: "get",
         params: {
           serviceKey: FestivalService.API_KEY,
@@ -35,6 +35,27 @@ class FestivalService {
         },
       });
       return data.response.body;
+    } catch (err) {
+      console.log(err);
+      return null;
+    }
+  };
+
+  static searchKeyword = async (keyword, pageNo, arrage) => {
+    try {
+      const response = await axios({
+        url: `${FestivalService.SEARCH_FESTIVAL}/searchKeyword`,
+        method: "get",
+        params: {
+          serviceKey: FestivalService.API_KEY,
+          MobileOS: "ETC",
+          MobileApp: "Festival",
+          contentTypeId: 15,
+          keyword,
+          pageNo: pageNo || 1,
+        },
+      });
+      return response.data.response.body;
     } catch (err) {
       console.log(err);
       return null;
