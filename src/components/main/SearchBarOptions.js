@@ -11,6 +11,7 @@ const SearchBarOptions = ({ optionProps, option }) => {
           <b>{option.highlight}</b>
           {option.back_nomarlPart}
         </Typography>
+        <Typography variant="body2">{option.area.addr}</Typography>
       </Grid>
     </Grid>
   );
@@ -21,8 +22,8 @@ SearchBarOptions.propTypes = {
     front_nomarlPart: PropTypes.string,
     highlight: PropTypes.string,
     back_nomarlPart: PropTypes.string,
-    memo: PropTypes.shape({
-      contents: PropTypes.string,
+    area: PropTypes.shape({
+      addr: PropTypes.string,
     }),
   }).isRequired,
   optionProps: PropTypes.instanceOf(Object).isRequired,

@@ -4,7 +4,7 @@ import { Box } from "@mui/system";
 import { Avatar, Typography, useTheme } from "@mui/material";
 
 const Marker = ({ festival }) => {
-  const { title, contentid, firstimage, firstimage2 } = festival;
+  const { title, firstimage, firstimage2 } = festival;
   const theme = useTheme();
   return (
     <Box
