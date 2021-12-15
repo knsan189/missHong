@@ -1,0 +1,132 @@
+{
+  "data": [{
+      "name": "서울",
+      "areaCode": 1
+    }, {
+      "areaCode": 1,
+      "name": "서울 강남구",
+      "sigunguCode": 1
+    },
+    {
+      "areaCode": 1,
+      "name": "서울 강동구",
+      "sigunguCode": 2
+    },
+    {
+      "areaCode": 1,
+      "name": "서울 강북구",
+      "sigunguCode": 3
+    },
+    {
+      "areaCode": 1,
+      "name": "서울 강서구",
+      "sigunguCode": 4
+    },
+    {
+      "areaCode": 1,
+      "name": "서울 관악구",
+      "sigunguCode": 5
+    },
+    {
+      "areaCode": 1,
+      "name": "서울 광진구",
+      "sigunguCode": 6
+    },
+    {
+      "areaCode": 1,
+      "name": "서울 구로구",
+      "sigunguCode": 7
+    },
+    {
+      "areaCode": 1,
+      "name": "서울 금천구",
+      "sigunguCode": 8
+    },
+    {
+      "areaCode": 1,
+      "name": "서울 노원구",
+      "sigunguCode": 9
+    },
+    {
+      "areaCode": 1,
+      "name": "서울 도봉구",
+      "sigunguCode": 10
+    },
+    {
+      "areaCode": 1,
+      "name": "서울 동대문구",
+      "sigunguCode": 11
+    },
+    {
+      "areaCode": 1,
+      "name": "서울 동작구",
+      "sigunguCode": 12
+    },
+    {
+      "areaCode": 1,
+      "name": "서울 마포구",
+      "sigunguCode": 13
+    },
+    {
+      "areaCode": 1,
+      "name": "서울 서대문구",
+      "sigunguCode": 14
+    },
+    {
+      "areaCode": 1,
+      "name": "서울 서초구",
+      "sigunguCode": 15
+    },
+    {
+      "areaCode": 1,
+      "name": "서울 성동구",
+      "sigunguCode": 16
+    },
+    {
+      "areaCode": 1,
+      "name": "서울 성북구",
+      "sigunguCode": 17
+    },
+    {
+      "areaCode": 1,
+      "name": "서울 송파구",
+      "sigunguCode": 18
+    },
+    {
+      "areaCode": 1,
+      "name": "서울 양천구",
+      "sigunguCode": 19
+    },
+    {
+      "areaCode": 1,
+      "name": "서울 영등포구",
+      "sigunguCode": 20
+    },
+    {
+      "areaCode": 1,
+      "name": "서울 용산구",
+      "sigunguCode": 21
+    },
+    {
+      "areaCode": 1,
+      "name": "서울 은평구",
+      "sigunguCode": 22
+    },
+    {
+      "areaCode": 1,
+      "name": "서울 종로구",
+      "sigunguCode": 23
+    },
+    {
+      "areaCode": 1,
+      "name": "서울 중구",
+      "sigunguCode": 24
+    },
+    {
+      "areaCode": 1,
+      "name": "서울 중랑구",
+      "sigunguCode": 25
+    }
+  ]
+
+}
