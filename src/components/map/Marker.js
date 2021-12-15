@@ -14,7 +14,7 @@ const Marker = ({ festival }) => {
         maxWidth: 200,
         whiteSpace: "nowrap",
         padding: theme.spacing(0.5),
-        boxShadow: theme.shadows[2],
+        boxShadow: theme.shadows[5],
         borderRadius: theme.shape.borderRadius,
       }}
     >

@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 import Marker from "./Marker";
 
-const Markers = ({ festivals }) => {
+const Markers = () => {
+  const { festivals } = useSelector((state) => state.festivals);
   return (
     festivals &&
     festivals.items.item.map((festival) => {
@@ -18,10 +20,6 @@ const Markers = ({ festivals }) => {
       );
     })
   );
-};
-
-Markers.propTypes = {
-  festivals: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default Markers;

@@ -1,15 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Link from "next/link";
-import { AppBar, Container, Toolbar, Typography } from "@mui/material";
+import { AppBar, Button, Container, Toolbar, Typography } from "@mui/material";
+import { useTheme } from "@mui/styles";
 
 const Header = ({ position }) => {
+  const theme = useTheme();
   return (
-    <AppBar position={position}>
+    <AppBar position={position} sx={{ zIndex: theme.zIndex.drawer + 1 }}>
       <Toolbar>
         <Container>
           <Link href="/" passHref>
-            <Typography>Miss Hong Fesitval Tour</Typography>
+            <Button sx={{ color: "inherit" }}>미스 홍 투어</Button>
           </Link>
         </Container>
       </Toolbar>

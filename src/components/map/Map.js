@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import GoogleMapReact from "google-map-react";
 import { Box } from "@mui/system";
 import { useSelector } from "react-redux";
 import { getPlacesCenterZoom, moveMapPosition } from "../../utils/GeoUtil";
 import Markers from "./Markers";
+import MapSidebar from "./MapSidebar";
+import MapBox from "./MapBox";
 
 const Map = (props) => {
   const { festivals } = useSelector((state) => state.festivals);
+  const [sidebar, setSidebar] = useState(true);
 
   const onGoogleApiLoaded = ({ map, maps }) => {
     window.map = map;
@@ -19,19 +22,18 @@ const Map = (props) => {
     }
   };
 
-  const Marker = Markers({ festivals });
+  const onToggleSidebar = (bool) => {
+    setSidebar(bool);
+  };
 
   return (
-    <Box sx={{ width: "100%", height: "100vh" }}>
-      <GoogleMapReact
-        bootstrapURLKeys={{ key: "AIzaSyCev0yeTdZL7ky-9cIEQrrKZW-IT0VP8Ms" }}
-        yesIWantToUseGoogleMapApiInternals
+    <Box display="flex">
+      <MapBox
+        sidebar={sidebar}
         onGoogleApiLoaded={onGoogleApiLoaded}
-        defaultCenter={{ lat: 37.479133, lng: 126.884813 }}
-        defaultZoom={10}
-      >
-        {Marker}
-      </GoogleMapReact>
+        onToggleSidebar={onToggleSidebar}
+      />
+      <MapSidebar open={sidebar} onToggle={onToggleSidebar} />
     </Box>
   );
 };

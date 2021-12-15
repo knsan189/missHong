@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import PropTypes from "prop-types";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@mui/styles";
 import { Button, InputBase, Paper } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
