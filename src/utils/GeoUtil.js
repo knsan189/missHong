@@ -11,61 +11,25 @@ function getMapPosFromBounds(bounds) {
   return { bounds, zoom };
 }
 
-const getLocation = (place) => {
-  let location;
-  if (place.geometry) {
-    location = place.geometry.location;
-  } else if (place.poi) {
-    location = place.poi.location;
-  } else if (place.location) {
-    location = place.location;
-  } else {
-    location = place;
-  }
-  return location;
-};
-
 function getMapPosFromGoogleGeometry(viewport) {
   const bounds = {
     ne: viewport.getNorthEast().toJSON(),
     sw: viewport.getSouthWest().toJSON(),
   };
-
   return getMapPosFromBounds(bounds);
 }
 
-const getViewport = (place) => {
-  let bound;
-
-  if (place.geometry) {
-    bound = place.geometry.viewport;
-  } else if (place.poi?.viewport) {
-    bound = new window.maps.LatLngBounds(
-      place.poi.viewport.sw,
-      place.poi.viewport.ne
-    );
-  } else if (place.poi?.location) {
-    bound = new window.maps.LatLngBounds();
-  } else {
-    bound = new window.maps.LatLngBounds();
-  }
-  return bound;
-};
-
 const getMaxBounds = (places) => {
-  const bounds = getViewport(places[0].dayPlans?.[0] || places[0]);
-  places.forEach((place) => {
-    if (place.dayPlans) {
-      place.dayPlans.forEach((dayPlan) => bounds.extend(dayPlan.poi.location));
-    } else {
-      const location = getLocation(place);
-      bounds.extend(location);
+  const bounds = new window.maps.LatLngBounds();
+  places.forEach(({ mapx, mapy }) => {
+    if (mapx && mapy) {
+      bounds.extend({ lng: parseFloat(mapx, 10), lat: parseFloat(mapy, 10) });
     }
   });
   return bounds;
 };
 
-const getPlacesCenterZoom = (places) => {
+export const getPlacesCenterZoom = (places) => {
   if (places.length > 0) {
     const viewport = getMaxBounds(places);
     if (viewport) {
@@ -76,3 +40,12 @@ const getPlacesCenterZoom = (places) => {
   }
   return null;
 };
+
+export function moveMapPosition(center, zoom) {
+  if (center) {
+    window.map.panTo(center);
+  }
+  if (zoom) {
+    window.map.setZoom(zoom);
+  }
+}

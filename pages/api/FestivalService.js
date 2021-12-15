@@ -51,6 +51,7 @@ class FestivalService {
           MobileOS: "ETC",
           MobileApp: "Festival",
           contentTypeId: 15,
+          numOfRows: 20,
           keyword,
           pageNo: pageNo || 1,
         },
