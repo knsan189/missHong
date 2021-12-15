@@ -4,8 +4,10 @@ import PropTypes from "prop-types";
 import Festival from "../../../pages/api/FestivalService";
 import FestivalList from "../festival/FestivalList";
 import Search from "./Search";
+import useNotifier from "../../hooks/useNotifier";
 
 const Main = (props) => {
+  useNotifier();
   const [festivals, setFestivals] = useState(null);
 
   const getFestivals = async () => {
@@ -17,10 +19,10 @@ const Main = (props) => {
   }, []);
 
   return (
-    <Container>
+    <>
       <Search />
       <FestivalList festivals={festivals} />
-    </Container>
+    </>
   );
 };
 

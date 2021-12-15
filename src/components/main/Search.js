@@ -2,10 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import { Box } from "@mui/material";
+import { Box, Container } from "@mui/material";
+import { useTheme } from "@mui/styles";
 import SearchBar from "./SearchBar";
 import FestivalService from "../../../pages/api/FestivalService";
 import { setFestivals } from "../../redux/reducers/festival";
+import { enqueueSnackbar } from "../../redux/reducers/snackbar";
+import Snackbar from "../Snackbar";
 
 const Search = (props) => {
   const dispatch = useDispatch();
@@ -13,13 +16,41 @@ const Search = (props) => {
   const { festivals } = useSelector((state) => state.festivals);
   const onSearch = async (text) => {
     const result = await FestivalService.searchKeyword(text, 0);
+
+    if (result.totalCount === 0) {
+      dispatch(
+        enqueueSnackbar({
+          message: "해당 지역의 축제가 없습니다",
+          options: { variant: "warning", action: Snackbar },
+        })
+      );
+      return;
+    }
     dispatch(setFestivals(result));
     router.push("/map");
   };
 
+  const theme = useTheme();
+
   return (
-    <Box sx={{ height: "100vh" }}>
-      <SearchBar onSearch={onSearch} />
+    <Box
+      sx={{
+        height: 460,
+        backgroundImage: "url('./images/background2.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center center",
+      }}
+    >
+      <Container
+        sx={{
+          height: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <SearchBar onSearch={onSearch} />
+      </Container>
     </Box>
   );
 };

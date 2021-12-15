@@ -18,7 +18,11 @@ const Marker = ({ festival }) => {
         borderRadius: theme.shape.borderRadius,
       }}
     >
-      <Avatar alt={title} src={firstimage || firstimage2} />
+      <Avatar
+        sx={{ width: 50, height: 50 }}
+        alt={title}
+        src={firstimage || firstimage2}
+      />
     </Box>
   );
 };

@@ -1,18 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Grid } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 import FestivalItem from "./FestivalItem";
 
 const FestivalList = ({ festivals }) => {
   if (!festivals) return null;
   return (
-    <Grid container spacing={3}>
-      {festivals.items.item.map((festival) => (
-        <Grid item key={festival.contentid} md={3}>
-          <FestivalItem festival={festival} />
-        </Grid>
-      ))}
-    </Grid>
+    <Container>
+      <Grid container spacing={3}>
+        {festivals.items.item.map((festival) => (
+          <Grid item key={festival.contentid} md={3}>
+            <FestivalItem festival={festival} />
+          </Grid>
+        ))}
+      </Grid>
+    </Container>
   );
 };
 

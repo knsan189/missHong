@@ -1,17 +1,28 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { AppBar, Container, Toolbar } from "@mui/material";
+import Link from "next/link";
+import { AppBar, Container, Toolbar, Typography } from "@mui/material";
 
-const Header = (props) => {
+const Header = ({ position }) => {
   return (
-    <AppBar position="static">
+    <AppBar position={position}>
       <Toolbar>
-        <Container>Miss Hong Fesitval Tour</Container>
+        <Container>
+          <Link href="/" passHref>
+            <Typography>Miss Hong Fesitval Tour</Typography>
+          </Link>
+        </Container>
       </Toolbar>
     </AppBar>
   );
 };
 
-Header.propTypes = {};
+Header.propTypes = {
+  position: PropTypes.string,
+};
+
+Header.defaultProps = {
+  position: "static",
+};
 
 export default Header;
