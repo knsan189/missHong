@@ -62,6 +62,32 @@ class FestivalService {
       return null;
     }
   };
+
+  static searchAreaCode = async (code, pageNo = 1) => {
+    try {
+      const { areaCode, sigunguCode } = code;
+      const { data } = await axios({
+        url: `${FestivalService.SEARCH_FESTIVAL}/searchFestival`,
+        method: "get",
+        params: {
+          serviceKey: FestivalService.API_KEY,
+          pageNo,
+          numOfRows: "30",
+          _type: "json",
+          sigunguCode,
+          areaCode,
+          MobileOS: "ETC",
+          MobileApp: "Festival",
+          arrange: "B",
+          listYN: "Y",
+        },
+      });
+      return data.response.body;
+    } catch (err) {
+      console.log(err);
+      return null;
+    }
+  };
 }
 
 export default FestivalService;

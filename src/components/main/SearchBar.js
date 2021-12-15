@@ -7,8 +7,7 @@ import SearchBarInput from "./SearchBarInput";
 import areaCode from "../../../area.json";
 import SearchBarOptions from "./SearchBarOptions";
 
-const SearchBar = () => {
-  const onSearch = () => {};
+const SearchBar = ({ onSearch }) => {
   const [options, setOptions] = useState([]);
   const [value, setValue] = useState(null);
 
@@ -31,8 +30,11 @@ const SearchBar = () => {
     setOptions(newOptions);
   };
 
-  const onChange = (event) => {
-    console.log(event);
+  const onChange = (_, newValue) => {
+    if (newValue.area) {
+      onSearch(newValue.area);
+      setValue(newValue.area.name);
+    }
   };
 
   const onInputChange = (_, inputValue) => {
@@ -40,7 +42,6 @@ const SearchBar = () => {
       setOptions([]);
       return;
     }
-
     getOptions(inputValue);
   };
 
@@ -72,12 +73,14 @@ const SearchBar = () => {
             option={option}
           />
         )}
-        renderInput={(params) => (
-          <SearchBarInput params={params} onSearch={onSearch} />
-        )}
+        renderInput={(params) => <SearchBarInput params={params} />}
       />
     </Box>
   );
+};
+
+SearchBar.propTypes = {
+  onSearch: PropTypes.func.isRequired,
 };
 
 export default SearchBar;

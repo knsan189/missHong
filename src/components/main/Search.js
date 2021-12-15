@@ -14,9 +14,8 @@ const Search = (props) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { festivals } = useSelector((state) => state.festivals);
-  const onSearch = async (text) => {
-    const result = await FestivalService.searchKeyword(text, 0);
-
+  const onSearch = async (code) => {
+    const result = await FestivalService.searchAreaCode(code, 1);
     if (result.totalCount === 0) {
       dispatch(
         enqueueSnackbar({
