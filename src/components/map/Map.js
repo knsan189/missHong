@@ -12,8 +12,11 @@ const Map = (props) => {
   const onGoogleApiLoaded = ({ map, maps }) => {
     window.map = map;
     window.maps = maps;
-    const { newCenter, newZoom } = getPlacesCenterZoom(festivals.items.item);
-    moveMapPosition(newCenter, newZoom);
+
+    if (festivals) {
+      const { newCenter, newZoom } = getPlacesCenterZoom(festivals.items.item);
+      moveMapPosition(newCenter, newZoom);
+    }
   };
 
   const Marker = Markers({ festivals });

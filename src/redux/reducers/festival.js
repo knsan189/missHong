@@ -19,7 +19,7 @@ export const searchFestivalSuccess = (festivals) => ({
 
 const initialState = {
   loading: false,
-  festivals: [],
+  festivals: null,
 };
 
 // eslint-disable-next-line default-param-last
