@@ -6,6 +6,8 @@ import SidebarItem from "./SidebarItem";
 
 const SidebarList = (props) => {
   const { festivals } = useSelector((state) => state.festivals);
+
+  if (!festivals) return null;
   return (
     <List>
       {festivals.items.item.map((festival) => (
