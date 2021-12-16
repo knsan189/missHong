@@ -7,7 +7,11 @@ const SidebarItem = ({ festival }) => {
   return (
     <ListItem button divider>
       <ListItemAvatar>
-        <Avatar src={firstimage || firstimage2} />
+        <Avatar
+          src={firstimage || firstimage2}
+          variant="rounded"
+          sx={{ width: 50, height: 50 }}
+        />
       </ListItemAvatar>
       <ListItemText primary={title} secondary={addr1} />
     </ListItem>
