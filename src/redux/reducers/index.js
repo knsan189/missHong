@@ -1,5 +1,6 @@
 import FestivalReducer from "./festival";
 import SnackbarReducer from "./snackbar";
+import UserReducer from "./user";
 
 const { HYDRATE } = require("next-redux-wrapper");
 const { combineReducers } = require("redux");
@@ -13,6 +14,7 @@ const rootReducer = (state, action) => {
       const combineReducer = combineReducers({
         festivals: FestivalReducer,
         snackbar: SnackbarReducer,
+        user: UserReducer,
       });
       return combineReducer(state, action);
     }

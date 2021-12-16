@@ -2,12 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import clsx from "clsx";
 import GoogleMapReact from "google-map-react";
+import { useSelector } from "react-redux";
 import { Button } from "@mui/material";
 import { Box } from "@mui/system";
 import { makeStyles } from "@mui/styles";
-import { useSelector } from "react-redux";
 import { ArrowLeft, ArrowRight } from "@mui/icons-material";
 import Markers from "./Markers";
+import MapMylocationButton from "./MapMylocationButton";
+import MarkerCurrentLocation from "./MarkerCurrentLocation";
 
 const useStyles = makeStyles((theme) => ({
   box: {
@@ -45,8 +47,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const MapBox = ({ sidebar, onGoogleApiLoaded, onToggleSidebar }) => {
-  const Marker = Markers({});
+  const Marker = Markers();
   const classes = useStyles();
+  const { currentLocation } = useSelector((state) => state.user);
 
   return (
     <Box className={clsx(classes.box, { [classes.shift]: sidebar })}>
@@ -58,6 +61,12 @@ const MapBox = ({ sidebar, onGoogleApiLoaded, onToggleSidebar }) => {
         defaultZoom={10}
       >
         {Marker}
+        {currentLocation && (
+          <MarkerCurrentLocation
+            lat={currentLocation.lat}
+            lng={currentLocation.lng}
+          />
+        )}
       </GoogleMapReact>
       <Button
         className={classes.button}
@@ -66,6 +75,7 @@ const MapBox = ({ sidebar, onGoogleApiLoaded, onToggleSidebar }) => {
       >
         {sidebar ? <ArrowLeft /> : <ArrowRight />}
       </Button>
+      <MapMylocationButton />
     </Box>
   );
 };
