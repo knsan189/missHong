@@ -31,7 +31,7 @@ const SearchBar = ({ onSearch }) => {
   };
 
   const onChange = (_, newValue) => {
-    if (newValue.area) {
+    if (newValue?.area) {
       onSearch(newValue.area);
       setValue(newValue.area.name);
     }
@@ -52,6 +52,18 @@ const SearchBar = ({ onSearch }) => {
     return option;
   };
 
+  const isOptionEqualToValue = (o, v) => {
+    return o.area.name === v;
+  };
+
+  const inputRef = useRef();
+
+  const onFocus = () => {
+    if (!inputRef.current.value.length) {
+      setOptions([]);
+    }
+  };
+
   return (
     <Box>
       <Autocomplete
@@ -60,13 +72,15 @@ const SearchBar = ({ onSearch }) => {
         includeInputInList
         selectOnFocus
         blurOnSelect
+        freeSolo
         options={options}
         onChange={onChange}
         value={value}
         onInputChange={onInputChange}
         filterOptions={(x) => x}
         getOptionLabel={displaySelectedOnInput}
-        isOptionEqualToValue={(o, v) => o.area.name === v}
+        isOptionEqualToValue={isOptionEqualToValue}
+        onFocus={onFocus}
         renderOption={(optionProps, option) => (
           <SearchBarOptions
             key={optionProps.id}
@@ -74,7 +88,9 @@ const SearchBar = ({ onSearch }) => {
             option={option}
           />
         )}
-        renderInput={(params) => <SearchBarInput params={params} />}
+        renderInput={(params) => (
+          <SearchBarInput params={params} ref={inputRef} />
+        )}
       />
     </Box>
   );

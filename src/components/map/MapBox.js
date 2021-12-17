@@ -10,6 +10,7 @@ import { ArrowLeft, ArrowRight } from "@mui/icons-material";
 import Markers from "./Markers";
 import MapMylocationButton from "./MapMylocationButton";
 import MarkerCurrentLocation from "./MarkerCurrentLocation";
+import MapFilter from "./MapFilter";
 
 const useStyles = makeStyles((theme) => ({
   box: {
@@ -68,6 +69,7 @@ const MapBox = ({ sidebar, onGoogleApiLoaded, onToggleSidebar }) => {
           />
         )}
       </GoogleMapReact>
+      <MapFilter />
       <Button
         className={classes.button}
         variant="contained"

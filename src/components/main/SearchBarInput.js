@@ -1,22 +1,23 @@
-import React, { useRef } from "react";
+import React, { forwardRef, useRef } from "react";
 import PropTypes from "prop-types";
 import { useTheme } from "@mui/styles";
 import { Button, InputBase, Paper } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
-const SearchBarInput = ({ params }) => {
+const SearchBarInput = forwardRef(({ params }, ref) => {
   const theme = useTheme();
   return (
     <Paper
       sx={{
         display: "flex",
-        width: 700,
+        width: "100%",
         background: theme.palette.background.default,
       }}
       ref={params.InputProps.ref}
     >
       <InputBase
         inputProps={{ ...params.inputProps }}
+        inputRef={ref}
         placeholder="Search Korea Festival"
         fullWidth
         sx={{ px: 1, py: 0.5 }}
@@ -33,7 +34,7 @@ const SearchBarInput = ({ params }) => {
       </Button>
     </Paper>
   );
-};
+});
 
 SearchBarInput.propTypes = {
   params: PropTypes.instanceOf(Object).isRequired,
