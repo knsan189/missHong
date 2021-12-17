@@ -66,6 +66,7 @@ const SearchBar = ({ onSearch }) => {
         onInputChange={onInputChange}
         filterOptions={(x) => x}
         getOptionLabel={displaySelectedOnInput}
+        isOptionEqualToValue={(o, v) => o.area.name === v}
         renderOption={(optionProps, option) => (
           <SearchBarOptions
             key={optionProps.id}

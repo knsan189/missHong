@@ -7,7 +7,16 @@ import { useTheme } from "@mui/styles";
 const Header = ({ position }) => {
   const theme = useTheme();
   return (
-    <AppBar position={position} sx={{ zIndex: theme.zIndex.drawer + 1 }}>
+    <AppBar
+      position={position}
+      sx={{
+        zIndex: theme.zIndex.drawer + 1,
+        background: theme.palette.background.default,
+        color: theme.palette.primary.main,
+        boxShadow: 0,
+        border: `1px solid ${theme.palette.divider}`,
+      }}
+    >
       <Toolbar>
         <Container>
           <Link href="/" passHref>

@@ -1,5 +1,6 @@
 import { all, call, fork, put, takeLatest } from "@redux-saga/core/effects";
 import GeolocationService from "../../../pages/api/GeolocationService";
+import { moveMapPosition } from "../../utils/GeoUtil";
 import {
   getCurrentLocationSuccess,
   GET_CURRENT_LOCATION_REQUEST,
@@ -11,6 +12,7 @@ function* getCurrentLocationRequest() {
       GeolocationService.getCurrentPosition
     );
     const location = { lng: longitude, lat: latitude };
+    moveMapPosition(location);
     yield put(getCurrentLocationSuccess(location));
   } catch (err) {
     console.log(err);

@@ -27,7 +27,7 @@ const Map = (props) => {
   };
 
   return (
-    <Box display="flex">
+    <Box display="flex" flex={1} sx={{ height: "100%" }}>
       <MapBox
         sidebar={sidebar}
         onGoogleApiLoaded={onGoogleApiLoaded}

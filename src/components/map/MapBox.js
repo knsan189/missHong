@@ -14,7 +14,7 @@ import MarkerCurrentLocation from "./MarkerCurrentLocation";
 const useStyles = makeStyles((theme) => ({
   box: {
     position: "relative",
-    height: "100vh",
+    height: "100%",
     flexGrow: 1,
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
@@ -54,7 +54,7 @@ const MapBox = ({ sidebar, onGoogleApiLoaded, onToggleSidebar }) => {
   return (
     <Box className={clsx(classes.box, { [classes.shift]: sidebar })}>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: "AIzaSyCev0yeTdZL7ky-9cIEQrrKZW-IT0VP8Ms" }}
+        bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY }}
         yesIWantToUseGoogleMapApiInternals
         onGoogleApiLoaded={onGoogleApiLoaded}
         defaultCenter={{ lat: 37.479133, lng: 126.884813 }}
