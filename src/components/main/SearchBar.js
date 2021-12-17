@@ -7,7 +7,7 @@ import SearchBarInput from "./SearchBarInput";
 import areaCode from "../../../area.json";
 import SearchBarOptions from "./SearchBarOptions";
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = ({ onSearch, placeholder }) => {
   const [options, setOptions] = useState([]);
   const [value, setValue] = useState(null);
 
@@ -65,7 +65,7 @@ const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <Box>
+    <Box sx={{ width: "100%" }}>
       <Autocomplete
         autoComplete
         autoHighlight
@@ -89,7 +89,11 @@ const SearchBar = ({ onSearch }) => {
           />
         )}
         renderInput={(params) => (
-          <SearchBarInput params={params} ref={inputRef} />
+          <SearchBarInput
+            params={params}
+            ref={inputRef}
+            placeholder={placeholder}
+          />
         )}
       />
     </Box>
@@ -98,6 +102,7 @@ const SearchBar = ({ onSearch }) => {
 
 SearchBar.propTypes = {
   onSearch: PropTypes.func.isRequired,
+  placeholder: PropTypes.string.isRequired,
 };
 
 export default SearchBar;

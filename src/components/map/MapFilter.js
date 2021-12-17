@@ -31,7 +31,7 @@ const MapFilter = (props) => {
   );
   return (
     <Card sx={{ position: "absolute", top: 24, left: 8, width: 300, p: 1 }}>
-      <SearchBar onSearch={onSearch} />
+      <SearchBar onSearch={onSearch} placeholder="검색" />
     </Card>
   );
 };

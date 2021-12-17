@@ -48,7 +48,10 @@ const Search = (props) => {
           alignItems: "center",
         }}
       >
-        <SearchBar onSearch={onSearch} />
+        <SearchBar
+          onSearch={onSearch}
+          placeholder="축제가 궁금한 지역을 검색해보세요"
+        />
       </Container>
     </Box>
   );
