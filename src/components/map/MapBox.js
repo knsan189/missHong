@@ -5,6 +5,7 @@ import GoogleMapReact from "google-map-react";
 import { useSelector } from "react-redux";
 import { Button } from "@mui/material";
 import { Box } from "@mui/system";
+import styled from "@emotion/styled";
 import { makeStyles } from "@mui/styles";
 import { ArrowLeft, ArrowRight } from "@mui/icons-material";
 import Markers from "./Markers";
@@ -12,8 +13,24 @@ import MapMylocationButton from "./MapMylocationButton";
 import MarkerCurrentLocation from "./MarkerCurrentLocation";
 import MapFilter from "./MapFilter";
 
-const useStyles = makeStyles((theme) => ({
-  box: {
+const StyledButton = styled(Button)(({ theme }) => ({
+  position: "absolute",
+  top: "50%",
+  right: 0,
+  minWidth: "auto",
+  transform: "translateY(-50%)",
+  borderTopRightRadius: 0,
+  borderBottomRightRadius: 0,
+  padding: "8px 2px",
+  color: theme.palette.primary.main,
+  background: theme.palette.background.default,
+  "&:hover": {
+    color: theme.palette.primary.contrastText,
+  },
+}));
+
+const Main = styled(Box, { shouldForwardProp: (prop) => prop !== "open" })(
+  ({ theme, sidebar }) => ({
     position: "relative",
     height: "100%",
     flexGrow: 1,
@@ -22,38 +39,23 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
     marginRight: "-400px",
-  },
-  shift: {
-    transition: theme.transitions.create("margin", {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
+    ...(sidebar && {
+      transition: theme.transitions.create("margin", {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+      marginRight: 0,
     }),
-    marginRight: 0,
-  },
-  button: {
-    position: "absolute",
-    top: "50%",
-    right: 0,
-    minWidth: "auto",
-    transform: "translateY(-50%)",
-    borderTopRightRadius: 0,
-    borderBottomRightRadius: 0,
-    padding: "8px 2px",
-    color: theme.palette.primary.main,
-    background: theme.palette.background.default,
-    "&:hover": {
-      color: theme.palette.primary.contrastText,
-    },
-  },
-}));
+  })
+);
 
 const MapBox = ({ sidebar, onGoogleApiLoaded, onToggleSidebar }) => {
   const Marker = Markers();
-  const classes = useStyles();
+
   const { currentLocation } = useSelector((state) => state.user);
 
   return (
-    <Box className={clsx(classes.box, { [classes.shift]: sidebar })}>
+    <Main sidebar={sidebar}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY }}
         yesIWantToUseGoogleMapApiInternals
@@ -70,15 +72,14 @@ const MapBox = ({ sidebar, onGoogleApiLoaded, onToggleSidebar }) => {
         )}
       </GoogleMapReact>
       <MapFilter />
-      <Button
-        className={classes.button}
+      <StyledButton
         variant="contained"
         onClick={() => onToggleSidebar(!sidebar)}
       >
         {sidebar ? <ArrowLeft /> : <ArrowRight />}
-      </Button>
+      </StyledButton>
       <MapMylocationButton />
-    </Box>
+    </Main>
   );
 };
 

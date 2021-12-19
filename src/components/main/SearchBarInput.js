@@ -16,6 +16,7 @@ const SearchBarInput = forwardRef(({ params, placeholder }, ref) => {
       ref={params.InputProps.ref}
     >
       <InputBase
+        size="small"
         inputProps={{ ...params.inputProps }}
         inputRef={ref}
         placeholder={placeholder}
