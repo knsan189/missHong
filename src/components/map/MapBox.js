@@ -29,7 +29,7 @@ const StyledButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-const Main = styled(Box, { shouldForwardProp: (prop) => prop !== "open" })(
+const Main = styled(Box, { shouldForwardProp: (prop) => prop !== "sidebar" })(
   ({ theme, sidebar }) => ({
     position: "relative",
     height: "100%",

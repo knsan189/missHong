@@ -1,7 +1,15 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
-import { Card, Paper } from "@mui/material";
+import {
+  Card,
+  Divider,
+  CardContent,
+  Button,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+} from "@mui/material";
 import SearchBar from "../main/SearchBar";
 import FestivalService from "../../../pages/api/FestivalService";
 import { enqueueSnackbar } from "../../redux/reducers/snackbar";
@@ -29,9 +37,24 @@ const MapFilter = (props) => {
     },
     [dispatch]
   );
+
+  const [expanded, setExpaneded] = useState(false);
+
+  const onChange = () => {
+    setExpaneded(!expanded);
+  };
+
   return (
-    <Card sx={{ position: "absolute", top: 24, left: 8, width: 300, p: 1 }}>
-      <SearchBar onSearch={onSearch} placeholder="검색" />
+    <Card sx={{ position: "absolute", top: 24, left: 24, width: 300 }}>
+      <CardContent>
+        <SearchBar onSearch={onSearch} placeholder="검색" />
+      </CardContent>
+      <Accordion expanded={expanded} onChange={onChange} disableGutters>
+        <AccordionSummary>
+          <Button variant="contained">필터</Button>
+        </AccordionSummary>
+        <AccordionDetails>b</AccordionDetails>
+      </Accordion>
     </Card>
   );
 };

@@ -1,4 +1,5 @@
 import axios from "axios";
+import HashMap from "hashmap";
 
 class FestivalService {
   static FESTIVAL_URL = process.env.REACT_APP_FESTIVAL_API_URL;
@@ -9,6 +10,8 @@ class FestivalService {
 
   static API_KEY =
     "P/todAwLp6jB3Dx9vFBWu/BbzqviE4YaMhDnJ1Jyl77akvPHajFVr72AqAgiUCRoCAq27WO29pYAIR3meH3MHw==";
+
+  static casheMap = new HashMap();
 
   static getThisMonthFestival = async (
     eventDate,
@@ -85,6 +88,41 @@ class FestivalService {
       return data.response.body;
     } catch (err) {
       console.log(err);
+      return null;
+    }
+  };
+
+  static getFestivalDetail = async (contentId) => {
+    try {
+      let data = FestivalService.casheMap.get(contentId);
+      if (!data) {
+        const response = await axios({
+          url: `${FestivalService.SEARCH_FESTIVAL}/detailCommon`,
+          method: "get",
+          params: {
+            serviceKey: FestivalService.API_KEY,
+            type: "_json",
+            MobileOS: "ETC",
+            MobileApp: "Festival",
+            contentId,
+            defaultYN: "Y",
+            firstImageYN: "Y",
+            areacodeYN: "Y",
+            addrinfoYN: "Y",
+            mapinfoYN: "Y",
+            overviewYN: "Y",
+          },
+        });
+        data = response.data.response.body.items.item;
+
+        if (FestivalService.casheMap.size > 1000) {
+          FestivalService.casheMap.clear();
+        }
+        FestivalService.casheMap.set(contentId, data);
+      }
+      return data;
+    } catch (error) {
+      console.log(error);
       return null;
     }
   };

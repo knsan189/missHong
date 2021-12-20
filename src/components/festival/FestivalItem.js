@@ -7,12 +7,18 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { getFestivalDetailRequest } from "../../redux/reducers/festival";
 
 const FestivalItem = ({ festival }) => {
   const { addr1, contentid, firstimage, firstimage2, title } = festival;
+  const dispatch = useDispatch();
+  const onClick = () => {
+    dispatch(getFestivalDetailRequest(contentid));
+  };
   return (
     <Card sx={{ width: 250 }}>
-      <CardActionArea>
+      <CardActionArea onClick={onClick}>
         <CardMedia
           component="img"
           height="200"

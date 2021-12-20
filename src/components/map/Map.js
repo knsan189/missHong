@@ -7,9 +7,11 @@ import { getPlacesCenterZoom, moveMapPosition } from "../../utils/GeoUtil";
 import Markers from "./Markers";
 import MapSidebar from "./MapSidebar";
 import MapBox from "./MapBox";
+import Loading from "../Loading";
+import FestivalDetail from "../festival/FestivalDetail";
 
 const Map = (props) => {
-  const { festivals } = useSelector((state) => state.festivals);
+  const { festivals, loading } = useSelector((state) => state.festivals);
   const [sidebar, setSidebar] = useState(true);
 
   const onGoogleApiLoaded = ({ map, maps }) => {
@@ -34,6 +36,8 @@ const Map = (props) => {
         onToggleSidebar={onToggleSidebar}
       />
       <MapSidebar open={sidebar} onToggle={onToggleSidebar} />
+      <Loading open={loading} text="축제 불러오는중" />
+      <FestivalDetail />
     </Box>
   );
 };

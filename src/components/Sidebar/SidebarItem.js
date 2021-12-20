@@ -8,6 +8,8 @@ import {
   Typography,
 } from "@mui/material";
 import { useTheme } from "@mui/styles";
+import { useDispatch } from "react-redux";
+import { getFestivalDetailRequest } from "../../redux/reducers/festival";
 
 const SidebarItem = ({ festival }) => {
   const {
@@ -20,9 +22,14 @@ const SidebarItem = ({ festival }) => {
     eventstartdate,
   } = festival;
 
+  const dispatch = useDispatch();
   const theme = useTheme();
+  const onClick = () => {
+    dispatch(getFestivalDetailRequest(contentid));
+  };
+
   return (
-    <ListItem button divider>
+    <ListItem button divider onClick={onClick}>
       <ListItemAvatar sx={{ mr: 2 }}>
         <Avatar
           src={firstimage || firstimage2}
