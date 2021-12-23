@@ -51,7 +51,6 @@ const Main = styled(Box, { shouldForwardProp: (prop) => prop !== "sidebar" })(
 
 const MapBox = ({ sidebar, onGoogleApiLoaded, onToggleSidebar }) => {
   const Marker = Markers();
-
   const { currentLocation } = useSelector((state) => state.user);
 
   return (

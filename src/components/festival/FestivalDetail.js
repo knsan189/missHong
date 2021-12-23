@@ -22,8 +22,7 @@ const FestivalDetail = () => {
   return (
     <Dialog open={Boolean(detail)} onClose={onClose}>
       <CardMedia
-        image={firstimage || firstimage2}
-        component="image"
+        image={firstimage || firstimage2 || "./images/noimage.png"}
         sx={{ height: 200 }}
       />
       <DialogTitle>{title}</DialogTitle>

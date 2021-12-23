@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import PropTypes from "prop-types";
 import GoogleMapReact from "google-map-react";
 import { Box } from "@mui/system";
@@ -13,7 +13,6 @@ import FestivalDetail from "../festival/FestivalDetail";
 const Map = (props) => {
   const { festivals, loading } = useSelector((state) => state.festivals);
   const [sidebar, setSidebar] = useState(true);
-
   const onGoogleApiLoaded = ({ map, maps }) => {
     window.map = map;
     window.maps = maps;

@@ -6,7 +6,8 @@ class FestivalService {
 
   static HOLIDAY_URL = process.env.REACT_APP_HOLIDAY_API_URL;
 
-  static SEARCH_FESTIVAL = "/openapi/service/rest/KorService";
+  static SEARCH_FESTIVAL =
+    process.env.FESTIVAL_URL || "/openapi/service/rest/KorService";
 
   static API_KEY =
     "P/todAwLp6jB3Dx9vFBWu/BbzqviE4YaMhDnJ1Jyl77akvPHajFVr72AqAgiUCRoCAq27WO29pYAIR3meH3MHw==";
