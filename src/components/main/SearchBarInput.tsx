@@ -1,7 +1,6 @@
 import React, { forwardRef, useRef } from "react";
 import PropTypes from "prop-types";
-import { useTheme } from "@mui/styles";
-import { Button, InputBase, Paper } from "@mui/material";
+import { Button, InputBase, Paper, useTheme } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
 const SearchBarInput = forwardRef(({ params, placeholder }, ref) => {

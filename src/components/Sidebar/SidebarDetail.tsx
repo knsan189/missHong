@@ -20,6 +20,4 @@ const SidebarDetail = (props) => {
   );
 };
 
-SidebarDetail.propTypes = {};
-
 export default SidebarDetail;

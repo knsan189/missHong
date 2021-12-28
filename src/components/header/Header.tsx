@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Link from "next/link";
-import { AppBar, Button, Container, Toolbar, Typography } from "@mui/material";
-import { useTheme } from "@mui/styles";
+import { AppBar, Button, Container, Toolbar, Typography, useTheme } from "@mui/material";
 
 const Header = ({ position }) => {
   const theme = useTheme();

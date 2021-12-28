@@ -6,10 +6,11 @@ import Search from "./Search";
 import useNotifier from "../../hooks/useNotifier";
 import Loading from "../Loading";
 import FestivalDetail from "../festival/FestivalDetail";
+import { RootStateInterface } from "../../@types/redux/rootState";
 
 const Main = ({ festivals }) => {
   useNotifier();
-  const { loading } = useSelector((state) => state.festivals);
+  const { loading } = useSelector((state: RootStateInterface) => state.festivals);
 
   return (
     <>

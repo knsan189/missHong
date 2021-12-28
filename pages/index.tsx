@@ -18,11 +18,7 @@ export default function Home({ festivals }) {
 
 export const getServerSideProps = async () => {
   try {
-    const response = await FestivalService.getThisMonthFestival(
-      20211212,
-      1,
-      "P"
-    );
+    const response = await FestivalService.getThisMonthFestival(20211212, 1, "P", null);
     return {
       props: {
         festivals: response,

@@ -1,30 +1,28 @@
 import React from "react";
-import PropTypes from "prop-types";
 import {
   Avatar,
   ListItem,
   ListItemAvatar,
   ListItemText,
   Typography,
+  useTheme,
 } from "@mui/material";
-import { useTheme } from "@mui/styles";
 import { useDispatch } from "react-redux";
 import { getFestivalDetailRequest } from "../../redux/reducers/festival";
 import { getFormattedDate } from "../../utils/TimeUtil";
+import { festivalProps } from "../../types/festival";
 
-const SidebarItem = ({ festival }) => {
-  const {
-    title,
-    contentid,
-    firstimage,
-    firstimage2,
-    addr1,
-    eventenddate,
-    eventstartdate,
-  } = festival;
+interface itemProps {
+  festival: festivalProps;
+}
+
+const SidebarItem = ({ festival }: itemProps) => {
+  const { title, contentid, firstimage, firstimage2, addr1, eventenddate, eventstartdate } =
+    festival;
 
   const dispatch = useDispatch();
   const theme = useTheme();
+
   const onClick = () => {
     dispatch(getFestivalDetailRequest(contentid));
   };
@@ -45,34 +43,15 @@ const SidebarItem = ({ festival }) => {
         <Typography variant="subtitle1" gutterBottom noWrap>
           {title}
         </Typography>
-        <Typography
-          variant="body2"
-          noWrap
-          sx={{ color: theme.palette.text.secondary }}
-        >
+        <Typography variant="body2" noWrap sx={{ color: theme.palette.text.secondary }}>
           {addr1}
         </Typography>
-        <Typography
-          variant="caption"
-          sx={{ color: theme.palette.text.secondary }}
-        >
+        <Typography variant="caption" sx={{ color: theme.palette.text.secondary }}>
           {startDate} ~ {endDate}
         </Typography>
       </ListItemText>
     </ListItem>
   );
-};
-
-SidebarItem.propTypes = {
-  festival: PropTypes.shape({
-    title: PropTypes.string,
-    contentid: PropTypes.number,
-    firstimage: PropTypes.string,
-    firstimage2: PropTypes.string,
-    addr1: PropTypes.string,
-    eventenddate: PropTypes.number,
-    eventstartdate: PropTypes.number,
-  }).isRequired,
 };
 
 export default SidebarItem;

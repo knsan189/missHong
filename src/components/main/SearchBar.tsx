@@ -1,8 +1,7 @@
 import React, { useRef, useState } from "react";
 import PropTypes from "prop-types";
-import { Autocomplete, Box } from "@mui/material";
+import { Autocomplete, Box, useTheme } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { useTheme } from "@mui/styles";
 import SearchBarInput from "./SearchBarInput";
 import areaCode from "../../../area.json";
 import SearchBarOptions from "./SearchBarOptions";
@@ -82,18 +81,10 @@ const SearchBar = ({ onSearch, placeholder }) => {
         isOptionEqualToValue={isOptionEqualToValue}
         onFocus={onFocus}
         renderOption={(optionProps, option) => (
-          <SearchBarOptions
-            key={optionProps.id}
-            optionProps={optionProps}
-            option={option}
-          />
+          <SearchBarOptions key={optionProps.id} optionProps={optionProps} option={option} />
         )}
         renderInput={(params) => (
-          <SearchBarInput
-            params={params}
-            ref={inputRef}
-            placeholder={placeholder}
-          />
+          <SearchBarInput params={params} ref={inputRef} placeholder={placeholder} />
         )}
       />
     </Box>

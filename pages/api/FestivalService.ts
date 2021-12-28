@@ -1,27 +1,27 @@
 import axios from "axios";
 import HashMap from "hashmap";
+import { empty, get, set, size } from "@typed/hashmap";
 
 // arrage (A=제목순, B=조회순, C=수정일순, D=생성일순)
 // 대표이미지가 반드시 있는 정렬 (O=제목순, P=조회순, Q=수정일순)
+
+let cacheMap = empty<string, object>();
 
 class FestivalService {
   static FESTIVAL_URL = process.env.REACT_APP_FESTIVAL_API_URL;
 
   static HOLIDAY_URL = process.env.REACT_APP_HOLIDAY_API_URL;
 
-  static SEARCH_FESTIVAL =
-    process.env.FESTIVAL_URL || "/openapi/service/rest/KorService";
+  static SEARCH_FESTIVAL = process.env.FESTIVAL_URL || "/openapi/service/rest/KorService";
 
   static API_KEY =
     "P/todAwLp6jB3Dx9vFBWu/BbzqviE4YaMhDnJ1Jyl77akvPHajFVr72AqAgiUCRoCAq27WO29pYAIR3meH3MHw==";
 
-  static casheMap = new HashMap();
-
   static getThisMonthFestival = async (
-    eventDate,
-    pageNo,
-    arrange,
-    areaCode
+    eventDate: number,
+    pageNo: number,
+    arrange: string,
+    areaCode: number | null,
   ) => {
     try {
       const { data } = await axios({
@@ -98,7 +98,8 @@ class FestivalService {
 
   static getFestivalDetail = async (contentId) => {
     try {
-      let data = FestivalService.casheMap.get(contentId);
+      console.log(cacheMap);
+      let data = get(contentId, cacheMap);
       if (!data) {
         const response = await axios({
           url: `${FestivalService.SEARCH_FESTIVAL}/detailCommon`,
@@ -121,10 +122,10 @@ class FestivalService {
         const intro = await FestivalService.getFestivalDetailIntro(contentId);
         const images = await FestivalService.getFestivalDetailImage(contentId);
         data = { ...data, ...intro, images: images || [] };
-        if (FestivalService.casheMap.size > 1000) {
-          FestivalService.casheMap.clear();
+        if (size(cacheMap) > 1000) {
+          cacheMap = empty<string, object>();
         }
-        FestivalService.casheMap.set(contentId, data);
+        cacheMap = set(contentId, data, cacheMap);
       }
       return data;
     } catch (error) {

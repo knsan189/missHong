@@ -1,4 +1,5 @@
 import { fitBounds } from "google-map-react";
+import { Center } from "../types/map";
 
 function getMapPosFromBounds(bounds) {
   const div = window.map?.getDiv();
@@ -41,7 +42,7 @@ export const getPlacesCenterZoom = (places) => {
   return null;
 };
 
-export function moveMapPosition(center, zoom) {
+export function moveMapPosition(center: Center | null, zoom) {
   if (center) {
     window.map.panTo(center);
   }

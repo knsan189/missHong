@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
-import { Avatar, Tooltip, Box, Fade } from "@mui/material";
-import styled from "@emotion/styled";
+import { Avatar, Tooltip, Box, Fade, styled } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { getFestivalDetailRequest } from "../../redux/reducers/festival";
 
@@ -41,11 +40,7 @@ const Marker = ({ festival }) => {
         arrow
         placement="right"
       >
-        <Avatar
-          sx={{ width: 50, height: 50 }}
-          alt={title}
-          src={firstimage || firstimage2}
-        />
+        <Avatar sx={{ width: 50, height: 50 }} alt={title} src={firstimage || firstimage2} />
       </Tooltip>
     </StyledBox>
   );

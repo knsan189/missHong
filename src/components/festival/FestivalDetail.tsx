@@ -1,19 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {
-  CardMedia,
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  Divider,
-  Typography,
-} from "@mui/material";
+import { CardMedia, Dialog, DialogContent, DialogTitle, Divider, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { clearFestivalDetail } from "../../redux/reducers/festival";
 import { getFormattedDate } from "../../utils/TimeUtil";
+import { RootStateInterface } from "../../@types/redux/rootState";
 
 const FestivalDetail = () => {
-  const { detail } = useSelector((state) => state.festivals);
+  const { detail } = useSelector((state: RootStateInterface) => state.festivals);
   const dispatch = useDispatch();
 
   if (!detail) return null;
@@ -34,14 +28,9 @@ const FestivalDetail = () => {
   const startDate = getFormattedDate(eventstartdate);
   const endDate = getFormattedDate(eventenddate);
 
-  console.log(detail);
-
   return (
     <Dialog open={Boolean(detail)} onClose={onClose}>
-      <CardMedia
-        image={firstimage || firstimage2 || "./images/noimage.png"}
-        sx={{ height: 200 }}
-      />
+      <CardMedia image={firstimage || firstimage2 || "./images/noimage.png"} sx={{ height: 200 }} />
       <DialogTitle>
         {title}
         <Typography>

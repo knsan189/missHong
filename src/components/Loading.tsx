@@ -6,10 +6,17 @@ import {
   Typography,
   LinearProgress,
   linearProgressClasses,
+  Theme,
+  BoxProps,
+  LinearProgressProps,
+  styled,
 } from "@mui/material";
-import styled from "@emotion/styled";
 
-const ProgressBox = styled(Box)(({ theme }) => ({
+interface LoadingProps {
+  open: boolean;
+  text: string;
+}
+const ProgressBox = styled(Box)<BoxProps>(({ theme }) => ({
   width: 400,
   height: 100,
   background: theme.palette.background.default,
@@ -21,13 +28,12 @@ const ProgressBox = styled(Box)(({ theme }) => ({
   flexWrap: "wrap",
 }));
 
-const StyledProgress = styled(LinearProgress)(({ theme }) => ({
+const StyledProgress = styled(LinearProgress)<LinearProgressProps>(({ theme }) => ({
   height: 10,
   width: "100%",
   borderRadius: 5,
   [`&.${linearProgressClasses.colorPrimary}`]: {
-    backgroundColor:
-      theme.palette.grey[theme.palette.mode === "light" ? 200 : 800],
+    backgroundColor: theme.palette.grey[theme.palette.mode === "light" ? 200 : 800],
   },
   [`& .${linearProgressClasses.bar}`]: {
     borderRadius: 5,
@@ -35,7 +41,7 @@ const StyledProgress = styled(LinearProgress)(({ theme }) => ({
   },
 }));
 
-const Loading = ({ open, text }) => {
+const Loading = ({ open, text }: LoadingProps) => {
   return (
     <Backdrop
       sx={{

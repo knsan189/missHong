@@ -1,12 +1,8 @@
 import React from "react";
-import { Button } from "@mui/material";
-import { useTheme } from "@mui/styles";
+import { Button, useTheme } from "@mui/material";
 import { MyLocation } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getCurrentLocationRequest,
-  removeCurrentLocation,
-} from "../../redux/reducers/user";
+import { getCurrentLocationRequest, removeCurrentLocation } from "../../redux/reducers/user";
 
 const MapMylocationButton = () => {
   const theme = useTheme();
@@ -25,9 +21,7 @@ const MapMylocationButton = () => {
     <Button
       sx={{
         position: "absolute",
-        color: currentLocation
-          ? theme.palette.primary.light
-          : theme.palette.text.secondary,
+        color: currentLocation ? theme.palette.primary.light : theme.palette.text.secondary,
         background: theme.palette.background.default,
         minWidth: "auto",
         width: 42,

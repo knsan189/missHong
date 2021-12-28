@@ -8,9 +8,7 @@ const SidebarTitle = (props) => {
 
   return (
     <Box py={3} px={2}>
-      <Typography variant="h6">
-        이 지역 축제 목록 {festivals?.totalCount}개
-      </Typography>
+      <Typography variant="h6">이 지역 축제 목록 {festivals?.totalCount}개</Typography>
     </Box>
   );
 };
