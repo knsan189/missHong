@@ -1,6 +1,9 @@
 import axios from "axios";
 import HashMap from "hashmap";
 
+// arrage (A=제목순, B=조회순, C=수정일순, D=생성일순)
+// 대표이미지가 반드시 있는 정렬 (O=제목순, P=조회순, Q=수정일순)
+
 class FestivalService {
   static FESTIVAL_URL = process.env.REACT_APP_FESTIVAL_API_URL;
 
@@ -117,7 +120,7 @@ class FestivalService {
         data = response.data.response.body.items.item;
         const intro = await FestivalService.getFestivalDetailIntro(contentId);
         const images = await FestivalService.getFestivalDetailImage(contentId);
-        data = { ...data, ...intro, images };
+        data = { ...data, ...intro, images: images || [] };
         if (FestivalService.casheMap.size > 1000) {
           FestivalService.casheMap.clear();
         }

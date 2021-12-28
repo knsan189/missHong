@@ -21,7 +21,7 @@ export const getServerSideProps = async () => {
     const response = await FestivalService.getThisMonthFestival(
       20211212,
       1,
-      "B"
+      "P"
     );
     return {
       props: {

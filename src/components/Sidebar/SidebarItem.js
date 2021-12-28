@@ -10,6 +10,7 @@ import {
 import { useTheme } from "@mui/styles";
 import { useDispatch } from "react-redux";
 import { getFestivalDetailRequest } from "../../redux/reducers/festival";
+import { getFormattedDate } from "../../utils/TimeUtil";
 
 const SidebarItem = ({ festival }) => {
   const {
@@ -26,14 +27,6 @@ const SidebarItem = ({ festival }) => {
   const theme = useTheme();
   const onClick = () => {
     dispatch(getFestivalDetailRequest(contentid));
-  };
-
-  const getFormattedDate = (date) => {
-    const stringDate = date.toString();
-    const year = stringDate.substr(0, 4);
-    const month = stringDate.substr(4, 2);
-    const day = stringDate.substr(6, 2);
-    return `${year}. ${month}. ${day}`;
   };
 
   const startDate = getFormattedDate(eventstartdate);
