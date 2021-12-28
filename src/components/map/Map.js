@@ -1,14 +1,12 @@
-import React, { useRef, useState } from "react";
-import PropTypes from "prop-types";
-import GoogleMapReact from "google-map-react";
+import React, { useCallback, useState } from "react";
 import { Box } from "@mui/system";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getPlacesCenterZoom, moveMapPosition } from "../../utils/GeoUtil";
-import Markers from "./Markers";
 import MapSidebar from "./MapSidebar";
 import MapBox from "./MapBox";
 import Loading from "../Loading";
 import FestivalDetail from "../festival/FestivalDetail";
+import { setFestivals } from "../../redux/reducers/festival";
 
 const Map = (props) => {
   const { festivals, loading } = useSelector((state) => state.festivals);
@@ -23,9 +21,15 @@ const Map = (props) => {
     }
   };
 
-  const onToggleSidebar = (bool) => {
+  const dispatch = useDispatch();
+
+  const onToggleSidebar = useCallback((bool) => {
     setSidebar(bool);
-  };
+  }, []);
+
+  const onClearList = useCallback(() => {
+    dispatch(setFestivals(null));
+  }, [dispatch]);
 
   return (
     <Box display="flex" flex={1} sx={{ height: "100%" }}>
@@ -34,9 +38,13 @@ const Map = (props) => {
         onGoogleApiLoaded={onGoogleApiLoaded}
         onToggleSidebar={onToggleSidebar}
       />
-      <MapSidebar open={sidebar} onToggle={onToggleSidebar} />
+      <MapSidebar
+        open={sidebar}
+        onToggle={onToggleSidebar}
+        onClearList={onClearList}
+      />
       <Loading open={loading} text="축제 불러오는중" />
-      <FestivalDetail />
+      {/* <FestivalDetail /> */}
     </Box>
   );
 };

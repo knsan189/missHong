@@ -39,6 +39,7 @@ export const clearFestivalDetail = () => ({
 const initialState = {
   loading: false,
   festivals: null,
+  detail: null,
 };
 
 // eslint-disable-next-line default-param-last

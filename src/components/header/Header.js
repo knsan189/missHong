@@ -14,7 +14,7 @@ const Header = ({ position }) => {
         background: theme.palette.background.default,
         color: theme.palette.primary.main,
         boxShadow: 0,
-        border: `1px solid ${theme.palette.divider}`,
+        borderBottom: `1px solid ${theme.palette.divider}`,
       }}
     >
       <Toolbar>

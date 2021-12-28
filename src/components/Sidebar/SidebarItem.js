@@ -28,6 +28,17 @@ const SidebarItem = ({ festival }) => {
     dispatch(getFestivalDetailRequest(contentid));
   };
 
+  const getFormattedDate = (date) => {
+    const stringDate = date.toString();
+    const year = stringDate.substr(0, 4);
+    const month = stringDate.substr(4, 2);
+    const day = stringDate.substr(6, 2);
+    return `${year}. ${month}. ${day}`;
+  };
+
+  const startDate = getFormattedDate(eventstartdate);
+  const endDate = getFormattedDate(eventenddate);
+
   return (
     <ListItem button divider onClick={onClick}>
       <ListItemAvatar sx={{ mr: 2 }}>
@@ -52,7 +63,7 @@ const SidebarItem = ({ festival }) => {
           variant="caption"
           sx={{ color: theme.palette.text.secondary }}
         >
-          {eventstartdate} ~ {eventenddate}
+          {startDate} ~ {endDate}
         </Typography>
       </ListItemText>
     </ListItem>

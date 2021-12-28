@@ -19,6 +19,8 @@ const FestivalDetail = () => {
   const onClose = () => {
     dispatch(clearFestivalDetail());
   };
+
+  console.log(detail);
   return (
     <Dialog open={Boolean(detail)} onClose={onClose}>
       <CardMedia

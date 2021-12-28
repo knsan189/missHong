@@ -115,13 +115,58 @@ class FestivalService {
           },
         });
         data = response.data.response.body.items.item;
-
+        const intro = await FestivalService.getFestivalDetailIntro(contentId);
+        const images = await FestivalService.getFestivalDetailImage(contentId);
+        data = { ...data, ...intro, images };
         if (FestivalService.casheMap.size > 1000) {
           FestivalService.casheMap.clear();
         }
         FestivalService.casheMap.set(contentId, data);
       }
       return data;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
+
+  static getFestivalDetailIntro = async (contentId) => {
+    try {
+      const response = await axios({
+        url: `${FestivalService.SEARCH_FESTIVAL}/detailIntro`,
+        method: "get",
+        params: {
+          serviceKey: FestivalService.API_KEY,
+          type: "_json",
+          MobileOS: "ETC",
+          MobileApp: "Festival",
+          contentId,
+          contentTypeId: 15,
+        },
+      });
+      return response.data.response.body.items.item;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
+
+  static getFestivalDetailImage = async (contentId) => {
+    try {
+      const response = await axios({
+        url: `${FestivalService.SEARCH_FESTIVAL}/detailImage`,
+        method: "get",
+        params: {
+          serviceKey: FestivalService.API_KEY,
+          type: "_json",
+          MobileOS: "ETC",
+          MobileApp: "Festival",
+          contentId,
+          detailImage: "Y",
+          subImageYN: "Y",
+        },
+      });
+      return response.data.response.body.items.item;
     } catch (error) {
       console.log(error);
       return null;
